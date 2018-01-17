@@ -7,6 +7,7 @@
 * https://www.digitalocean.com/community/tutorials/how-to-use-terraform-with-digitalocean
 
 === ansible ===
+Using https://github.com/kairen/kubeadm-ansible
 
 == What it does ==
 creates nodes on DO
