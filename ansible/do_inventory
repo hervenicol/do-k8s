@@ -1,8 +1,0 @@
-[master]
-46.101.112.187
-
-[node]
-
-[kube-cluster:children]
-master
-node

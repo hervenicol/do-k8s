@@ -24,7 +24,7 @@ and deploy kubernetes through kubeadm
 * eval terraform plan $(../params.sh)
 * eval terraform apply $(../params.sh)
 * eval terraform destroy $(../params.sh)
-* ../generate_inventory.sh > ../ansible/do_inventory
+* ../generate_inventory.sh > ../ansible/inventory
 * cd ../ansible
 * ansible-playbook -i do_inventory site.yml -u root
 
