@@ -19,7 +19,12 @@ Install kubeadm on them
 and deploy kubernetes through kubeadm
 
 == Run ==
-* ./gen_nodes_from_manager1.sh
-* eval terraform plan $(./params.sh)
-* eval terraform apply $(./params.sh)
-* eval terraform destroy $(./params.sh)
+* cd terraform
+* ../gen_nodes_from_manager1.sh
+* eval terraform plan $(../params.sh)
+* eval terraform apply $(../params.sh)
+* eval terraform destroy $(../params.sh)
+* ../generate_inventory.sh > ../ansible/do_inventory
+* cd ../ansible
+* ansible-playbook -i do_inventory site.yml -u root
+

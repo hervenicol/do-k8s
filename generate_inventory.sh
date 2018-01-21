@@ -15,6 +15,7 @@ while read host separator ip; do
   echo $ip
 done < <(terraform output | grep ^worker)
 
-echo 'kube-cluster:children]
+echo ""
+echo '[kube-cluster:children]
 master
 node'
