@@ -4,16 +4,18 @@
 echo '[master]'
 # Read managers
 while read host separator ip; do
-  echo "$ip"
-done < <(terraform output | grep ^manager)
+  private_ip=$(terraform output | sed -n "s/^${host%public}private = \(.*\)/\1/p")
+  echo "${host%.ip.public} ansible_host=$ip private_ip=$private_ip"
+done < <(terraform output | egrep "^manager.*ip\.public")
 
 echo ""
 
 echo '[node]'
 # Read workers
 while read host separator ip; do
-  echo $ip
-done < <(terraform output | grep ^worker)
+  private_ip=$(terraform output | sed -n "s/^${host%public}private = \(.*\)/\1/p")
+  echo "${host%.ip.public} ansible_host=$ip private_ip=$private_ip"
+done < <(terraform output | egrep "^worker.*ip\.public")
 
 echo ""
 echo '[kube-cluster:children]

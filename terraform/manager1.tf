@@ -27,8 +27,12 @@ resource "digitalocean_droplet" "manager1" {
   }
 }
 
-output "manager1.ip" {
+output "manager1.ip.public" {
   value = "${digitalocean_droplet.manager1.ipv4_address}"
+}
+
+output "manager1.ip.private" {
+  value = "${digitalocean_droplet.manager1.ipv4_address_private}"
 }
 
 

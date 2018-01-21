@@ -27,5 +27,8 @@ and deploy kubernetes through kubeadm
 * eval terraform destroy $(../params.sh)
 * ../generate_inventory.sh > ../ansible/inventory
 * cd ../ansible
-* ansible-playbook -i do_inventory site.yml -u root
+* ansible-playbook -i inventory site.yml -u root
+
+== Connect ==
+* ssh -i keys/kubekey kube@[manager IP]
 
