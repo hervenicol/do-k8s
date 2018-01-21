@@ -27,3 +27,22 @@
     - kubelet
     - kubeadm
     - kubectl
+
+- name: Create kube group
+  group:
+    name: kube
+    gid: 1100
+    state: present
+
+- name: Create kube user
+  user:
+    name: kube
+    comment: "Kubernetes user"
+    uid: 1100
+    group: kube
+
+- name: Copy ssh key for kube user
+  authorized_key:
+    user: kube
+    state: present
+    key: "{{ lookup('file', 'kubekey.pub') }}"
