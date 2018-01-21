@@ -2,7 +2,7 @@ resource "digitalocean_droplet" "manager1" {
   image = "ubuntu-17-10-x64"
   name = "manager1"
   region = "fra1"
-  size = "512mb"
+  size = "2gb"
   private_networking = true
   ssh_keys = [
     "${var.ssh_fingerprint}"
