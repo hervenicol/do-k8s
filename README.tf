@@ -1,6 +1,14 @@
+== Abstract ==
+These are some tools to create a kubernetes cluster in Digitalocean.
+* terraform creates the VMs
+* kubeadm manages Kubernetes configuration
+* ansible configures and runs kubeadm on the servers
+* contiv for the network layer
+
 == Requirements ==
 
 === DigitalOcean account ===
+* setup your info in tf_env.sh
 
 === terraform ===
 * http://www.terraform.io/downloads.html
@@ -32,3 +40,5 @@ and deploy kubernetes through kubeadm
 == Connect ==
 * ssh -i keys/kubekey kube@[manager IP]
 
+== Caveats ==
+* kubeadm currently supports only one master, so this is not suitable for production
