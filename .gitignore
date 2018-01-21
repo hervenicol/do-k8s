@@ -4,3 +4,4 @@ ansible/inventory
 keys/*
 !keys/.placeholder
 ansible/roles/kubeadm/files/kubekey.pub
+ansible/site.retry

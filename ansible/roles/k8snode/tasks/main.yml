@@ -1,0 +1,19 @@
+---
+
+- name: Check if kubeadm joir was already performed
+  stat:
+    path: /root/kubeadm_join.flag
+  register: kubeadm_join
+
+- name: Show join_command
+  debug:
+    var: hostvars["manager1"]["join_command"]
+
+- name: Join Kubernetes
+  command: "{{ hostvars['manager1']['join_command'] }}"
+  when: kubeadm_join.stat.exists == False
+
+- name: Flag node as joined
+  command: "touch /root/kubeadm_join.flag"
+  when: kubeadm_join.stat.exists == False
+

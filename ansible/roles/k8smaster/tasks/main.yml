@@ -1,0 +1,48 @@
+---
+
+- name: Check if kubeadm init was already performed
+  stat:
+    path: /root/kubeadm_init.flag
+  register: kubeadm_init
+
+- name: Show kubeadm_init
+  debug:
+    var: kubeadm_init
+
+- name: Initialize cluster
+  command: "kubeadm init --apiserver-advertise-address={{ private_ip }}"
+  when: kubeadm_init.stat.exists == False
+
+- name: Flag cluster as initialized
+  file:
+    path: /root/kubeadm_init.flag
+    state: touch
+  when: kubeadm_init.stat.exists == False
+
+- name: Check if contiv was already installed
+  stat:
+    path: /root/contiv-1.2.0
+  register: contiv_init
+
+- name: Retrieve Contiv
+  unarchive:
+    remote_src: yes
+    src: https://github.com/contiv/install/releases/download/1.2.0/contiv-1.2.0.tgz
+    dest: /root
+  when: contiv_init.stat.exists == False
+
+- name: Initialize Contiv
+  shell: "cd /root/contiv-1.2.0 && ./install/k8s/install.sh -n {{ private_ip }}"
+  when: contiv_init.stat.exists == False
+
+- name: Read join command
+  command: "kubeadm token create --print-join-command"
+  changed_when: False
+  register: join_command
+
+- name: Show join_command
+  debug:
+    var: join_command
+
+- name: Register join command
+  set_fact: join_command="{{ join_command.stdout }}"
