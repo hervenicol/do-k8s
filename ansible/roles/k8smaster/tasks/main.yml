@@ -46,3 +46,24 @@
 
 - name: Register join command
   set_fact: join_command="{{ join_command.stdout }}"
+
+- name: Update root bashrc
+  lineinfile:
+    path: /root/.bashrc
+    regexp: '^export KUBECONFIG=.*'
+    line: 'export KUBECONFIG=/etc/kubernetes/admin.conf'
+
+- name: Kubernetes config for user kube - mkdir
+  file:
+    path: /home/kube/.kube
+    state: directory
+    owner: kube
+    group: kube
+
+- name: Kubernetes config for user kube - copy file
+  copy:
+    remote_src: yes
+    src: /etc/kubernetes/admin.conf
+    dest: /home/kube/.kube/config
+    owner: kube
+    group: kube
