@@ -19,6 +19,7 @@ Install kubeadm on them
 and deploy kubernetes through kubeadm
 
 == Run ==
+* ./genkey.sh # Only once, to generate the kube user key
 * cd terraform
 * ../gen_nodes_from_manager1.sh
 * eval terraform plan $(../params.sh)
