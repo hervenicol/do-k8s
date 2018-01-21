@@ -14,6 +14,8 @@
   when: kubeadm_join.stat.exists == False
 
 - name: Flag node as joined
-  command: "touch /root/kubeadm_join.flag"
+  file:
+    path: /root/kubeadm_join.flag
+    state: touch
   when: kubeadm_join.stat.exists == False
 
