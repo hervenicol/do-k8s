@@ -42,3 +42,7 @@ and deploy kubernetes through kubeadm
 
 # Caveats
 * kubeadm currently supports only one master, so this is not suitable for production
+
+# Todo
+* Use Ansible dynamic inventory from tfstate 
+* Trigger Ansible from Terraform
