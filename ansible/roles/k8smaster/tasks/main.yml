@@ -67,3 +67,5 @@
     dest: /home/kube/.kube/config
     owner: kube
     group: kube
+
+- import_tasks: traefik.yml

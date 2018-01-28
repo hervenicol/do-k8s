@@ -4,6 +4,7 @@ These are some tools to create a kubernetes cluster in Digitalocean.
 * kubeadm manages Kubernetes configuration
 * ansible configures and runs kubeadm on the servers
 * contiv for the network layer
+* traefik as public proxy
 
 # Requirements
 
@@ -39,10 +40,12 @@ and deploy kubernetes through kubeadm
 
 # Connect
 * ssh -i keys/kubekey kube@[manager IP]
+* contiv is available on https://[manager]:10000/
 
 # Caveats
 * kubeadm currently supports only one master, so this is not suitable for production
 
 # Todo
+* auto-update Traefik conf (kubernetes provider?)
 * Use Ansible dynamic inventory from tfstate 
 * Trigger Ansible from Terraform

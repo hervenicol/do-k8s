@@ -1,0 +1,11 @@
+[entryPoints]
+    [entryPoints.http]
+    address = ":80"
+
+[web]
+address = ":8080"
+
+[file]
+filename = "/etc/traefik/rules.toml"
+watch = true
+

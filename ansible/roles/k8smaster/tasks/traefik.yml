@@ -1,0 +1,17 @@
+---
+
+- name: Create traefik config dir
+  file:
+    path: /etc/traefik
+    state: directory
+
+- name: Copy traefik config
+  copy:
+    src: traefik.toml
+    dest: /etc/traefik/traefik.toml
+  register: traefik_conf
+
+- name: Initialize Contiv
+  shell: "docker run -d -p 8080:8080 -p 80:80 -v /etc/traefik:/etc/traefik --name traefik traefik"
+  when: traefik_conf.changed == True
+
