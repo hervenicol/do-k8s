@@ -11,7 +11,7 @@
     dest: /etc/traefik/traefik.toml
   register: traefik_conf
 
-- name: Initialize Contiv
+- name: Run Traefik container
   shell: "docker run -d -p 8080:8080 -p 80:80 -v /etc/traefik:/etc/traefik --name traefik traefik"
   when: traefik_conf.changed == True
 
